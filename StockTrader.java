@@ -17,13 +17,16 @@ public class StockTrader {
         printData(years, months, prices);
         int lowest = indexOfLowest(prices);
 
-        System.out.println("TINY Lowest: " + prices[lowest] + " in " + monthName(months[lowest])
+        System.out.println("Lowest: " + prices[lowest] + " in " + monthName(months[lowest])
             + " " + years[lowest]);
 
         int highest = indexOfHighest(prices);
-
-        System.out.println("TINY Highest: " + prices[highest] + " in " + monthName(months[highest])
+        int highestDrop = indexOfBiggestDrop(prices);
+        System.out.println("Highest: " + prices[highest] + " in " + monthName(months[highest])
             + " " + years[highest]);
+
+        System.out.println("Biggest drop is: " + monthName(months[highestDrop]) + " to "
+            + monthName(months[highestDrop + 1]));
     }
 
     public static void loadData(Scanner in, int[] years, int[] months, double[] prices) {
@@ -60,5 +63,13 @@ public class StockTrader {
                 highestIndex = i;
         }
         return highestIndex;
+    }
+    public static int indexOfBiggestDrop(double[] prices) {
+        int highestDrop = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] - prices[i + 1] > prices[highestDrop] - prices[highestDrop + 1])
+                highestDrop = i;
+        }
+        return highestDrop;
     }
 }
