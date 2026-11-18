@@ -8,7 +8,7 @@
 //The dip buyer did bad on rising.txt because the data was always rising and never dipped, so the dip buyer never bought or sold anything.
 //Moving average beat buy and hold on aapl_2000_2010.txt. because the dot com crash occured in that time period
 //My strategy on average beat buy and hold 7/12 times.
-//I did change my rules to do better on one file. Making the strategy buy sooner and sell less often brought the AAPL average up to about the buy and hold level, but on AMZN and MSFT decreased a lot.
+//I did change my rules to do better on one file.  Making the strategy buy sooner and sell less often brought the AAPL average up to about the buy and hold level, but on AMZN and MSFT decreased a lot.
 
 
 //                      Lowest    When      Highest    When
