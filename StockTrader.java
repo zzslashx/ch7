@@ -160,13 +160,12 @@ else return "HOLD";
 }
 public static String myMethod(double[] history, boolean holding, double boughtAt) {
     double r = Math.random();
-    double now = history[history.length - 1];
 
     if (!holding) {
         if (r < 0.6) return "BUY";
         return "HOLD";
     }
-    if (now <= boughtAt * 0.85) {
+    if (history[history.length - 1] <= boughtAt * 0.85) {
         if (r < 0.5) return "SELL";
         return "HOLD";
     }
