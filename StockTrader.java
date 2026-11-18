@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class StockTrader {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("rising.txt"));
+        Scanner in = new Scanner(new File("ibm_2000_2010.txt"));
         String symbol = in.next();
         int n = in.nextInt();
 
@@ -43,7 +43,6 @@ System.out.println(")");
 
 double result = simulate(years, months, prices);
 System.out.printf("Final value: $%,.2f%n", result);
-
 
 }
     public static void loadData(Scanner in, int[] years, int[] months, double[] prices) {
@@ -123,9 +122,10 @@ public static double simulate(int[] years, int[] months, double[] prices) {
     return cash + shares * prices[prices.length - 1];
 }
 public static String decide(double[] history, boolean holding, double boughtAt) {
-    //return buyAndHold(history, holding, boughtAt);  
+   //return buyAndHold(history, holding, boughtAt);  
     //return dipBuyer(history, holding, boughtAt);
-    return movingAverage(history, holding, boughtAt);  
+    //return movingAverage(history, holding, boughtAt);
+  return myMethod(history, holding, boughtAt);  
 }
 public static String buyAndHold(double[] history, boolean holding, double boughtAt) {
     return "BUY";
@@ -147,7 +147,7 @@ public static String movingAverage(double[] history, boolean holding, double bou
 	double lastTotal = 0;
 	double average =0;
 if(history.length>=12){
-
+ 
 for (int i=history.length-1; i>=history.length-12;i--){
 	lastTotal+=history[i];
 	}
@@ -157,5 +157,20 @@ if(history.length<12) return "HOLD";
 else if(!holding && history[history.length-1] > average) return "BUY";
 else if(holding && history[history.length-1] < average) return "SELL";
 else return "HOLD";
+}
+public static String myMethod(double[] history, boolean holding, double boughtAt) {
+    double r = Math.random();
+    double now = history[history.length - 1];
+
+    if (!holding) {
+        if (r < 0.6) return "BUY";
+        return "HOLD";
+    }
+    if (now <= boughtAt * 0.85) {
+        if (r < 0.5) return "SELL";
+        return "HOLD";
+    }
+    if (r < 0.02) return "SELL";
+    return "HOLD";
 }
 }
